@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "omni"
-version = "0.1.2"
+version = "0.1.9"
 description = "Not one of them knew what I know"
 authors = ["werew"]
 readme = "README.md"
