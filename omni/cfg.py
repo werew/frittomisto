@@ -1,30 +1,31 @@
 """
 Module to manage config files
 """
-from typing import Any, Dict, Optional, TextIO, Union, List
+from typing import Any, Dict, Union, List, Optional
 from pathlib import Path
 import toml
+
 
 class Omnicfg:
     """
     Class to manage the omni config files.
-    The config file is a TOML file, and the default name is omni.toml and it 
+    The config file is a TOML file, and the default name is omni.toml and it
     is searched for in the current directory and its parents.
 
-    The API of this class is similar to the one of python Dicts: 
+    The API of this class is similar to the one of python Dicts:
     - cfg['key'] has a similar effect to dict['key']
     - cfg.get('key', default) has a similar effect to dict.get('key', default)
 
     It is possible to modify the behaviour of this class by calling the
-    "set_" methods. For example, to set the config file to use, call 
+    "set_" methods. For example, to set the config file to use, call
     set_config_file('path/to/config.toml').
     """
+
     def __init__(self):
-        self._config : Dict[str, Any] = None
-        self._config_names : List[str] = ['omni.toml']
-        self._config_file = None
-        self._should_monitor = False
-        self._last_modified = None
+        self._config: Optional[Dict[str, Any]] = None
+        self._config_names: List[str] = ["omni.toml"]
+        self._config_file: Optional[str] = None
+        self._should_monitor: bool = False
 
     def set_config_file(self, config_file: str) -> None:
         """
@@ -32,14 +33,15 @@ class Omnicfg:
         """
         self._config_file = config_file
 
-    def set_config_names(self, config_names: Union[str, list]):
+    def set_config_names(self, config_names: Union[str, List[str]]) -> None:
         """
         Set the config names to search for, in order of priority.
         The default is ['omni.toml']
         """
         if not config_names:
             raise ValueError("config_names must be a non-empty string or list")
-        elif isinstance(config_names, str):
+
+        if isinstance(config_names, str):
             config_names = [config_names]
 
         self._config_names = config_names
@@ -57,18 +59,18 @@ class Omnicfg:
         """
         self._should_monitor = should_monitor
 
-    def reload(self):
+    def reload(self) -> None:
         """
         Reload the config from the config file
         """
         self._config = self._reload_config()
 
-    def get(self, key, default=None):
+    def get(self, key: str, default: Optional[Any] = None) -> Any:
         """
         Get a config value
         """
         return self._get_config().get(key, default)
-    
+
     def __getitem__(self, __name: str) -> Any:
         """
         Get a config value
@@ -77,9 +79,8 @@ class Omnicfg:
 
     def __setitem__(self, __name: str, __value: Any) -> None:
         raise NotImplementedError("Setting config values is not yet implemented")
-    
-    def _get_config(self) -> Dict[str, Any]:
 
+    def _get_config(self) -> Dict[str, Any]:
         # Find the config file if it hasn't been found yet
         if self._config_file is None:
             self._config_file = self._find_config()
@@ -94,7 +95,13 @@ class Omnicfg:
         return self._config
 
     def _reload_config(self) -> Dict[str, Any]:
-        with open(self._config_file) as f:
+        """
+        Reload the config from the config file
+        """
+        if self._config_file is None:
+            raise ValueError("No config file set")
+
+        with open(self._config_file, encoding="utf-8") as f:
             config = toml.load(f)
         return config
 
@@ -107,6 +114,7 @@ class Omnicfg:
                 if (directory / name).exists():
                     return str(directory / name)
 
-        raise FileNotFoundError(f"Could not find config file in current directory or its parents")
-    
+        raise FileNotFoundError("Could not find config file in current directory or its parents")
+
+
 cfg = Omnicfg()

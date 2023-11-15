@@ -13,5 +13,5 @@ def no_print():
         func() # This will not print anything either
     """
     with patch("builtins.print") as mock_print:
-        mock_print.side_effect = lambda *args, **kwargs: None
+        mock_print.side_effect = lambda : None
         yield
