@@ -1,11 +1,9 @@
-# FrittoMisto 🍟 - A Python module with a Fried Mix of utilities 
-
-
+<h1>FrittoMisto 🍟</h1>
 <div style="margin-bottom: 200;">
 <img src="docs/frittomisto.jpg" width="200" height="200" align="left"/>
 
 <br>
-Welcome to FrittoMisto, a Python module which aims at offering a delectable assortment of small utilities to enhance day to day coding experience. 
+Welcome to FrittoMisto, a Python module with a Fried Mix of utilities to enhance your day to day coding experience. 
 <br>
 <br>
 Please note that FrittoMisto is currently at its very verge and not througly tested. We invite you to explore, experiment, share your feedback or, even better, contribute! 👩‍🍳
