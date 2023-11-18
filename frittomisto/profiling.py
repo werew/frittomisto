@@ -116,7 +116,7 @@ def pp_stats():
     ]
 
     # Print the table
-    with open(os.path.expanduser("~/.omni_lock"), "w", encoding="utf-8") as f:
+    with open(os.path.expanduser("~/.frittomisto_lock"), "w", encoding="utf-8") as f:
         fcntl.flock(f, fcntl.LOCK_EX)
         try:
             _print_row(headers, column_widths)

@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "omni"
-version = "0.1.9"
-description = "Not one of them knew what I know"
+name = "frittomisto"
+version = "0.0.a1"
+description = "A fried mix of python utilities"
 authors = ["werew"]
 readme = "README.md"
 

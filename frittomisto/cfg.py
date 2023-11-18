@@ -6,10 +6,10 @@ from pathlib import Path
 import toml
 
 
-class Omnicfg:
+class FrittoMistoCfg:
     """
-    Class to manage the omni config files.
-    The config file is a TOML file, and the default name is omni.toml and it
+    Class to manage the frittomisto config files.
+    The config file is a TOML file, and the default name is frittomisto.toml and it
     is searched for in the current directory and its parents.
 
     The API of this class is similar to the one of python Dicts:
@@ -23,7 +23,7 @@ class Omnicfg:
 
     def __init__(self):
         self._config: Optional[Dict[str, Any]] = None
-        self._config_names: List[str] = ["omni.toml"]
+        self._config_names: List[str] = ["frittomisto.toml"]
         self._config_file: Optional[str] = None
         self._should_monitor: bool = False
 
@@ -36,7 +36,7 @@ class Omnicfg:
     def set_config_names(self, config_names: Union[str, List[str]]) -> None:
         """
         Set the config names to search for, in order of priority.
-        The default is ['omni.toml']
+        The default is ['frittomisto.toml']
         """
         if not config_names:
             raise ValueError("config_names must be a non-empty string or list")
@@ -49,7 +49,7 @@ class Omnicfg:
     def get_config_names(self) -> List[str]:
         """
         Get the config names to search for, in order of priority.
-        The default is ['omni.toml']
+        The default is ['frittomisto.toml']
         """
         return self._config_names
 
@@ -117,4 +117,4 @@ class Omnicfg:
         raise FileNotFoundError("Could not find config file in current directory or its parents")
 
 
-cfg = Omnicfg()
+cfg = FrittoMistoCfg()
