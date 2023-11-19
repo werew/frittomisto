@@ -21,4 +21,4 @@ jobs:
     - name: Run the automated tests
       run: poetry run pytest -v
     - name: Analysing the code with pylint
-      run: pylint $(git ls-files '*.py')
+      run: poetry run pylint $(git ls-files '*.py')
