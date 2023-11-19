@@ -176,7 +176,7 @@ log.error("error message") # logs an error
 
 #### log_level
 Context manager to temporarily change log level.
-```
+
 ```python
 from frittomisto.logging import get_logger, log_level
 
