@@ -6,7 +6,7 @@
 Welcome to FrittoMisto, a Python module with a Fried Mix of utilities to enhance your day to day coding experience. 
 <br>
 <br>
-Please note that FrittoMisto is currently at its very verge and not througly tested. We invite you to explore, experiment, share your feedback or, even better, contribute! 👩‍🍳
+Please note that FrittoMisto is currently at its very verge and not thoroughly tested. We invite you to explore, experiment, share your feedback or, even better, contribute! 👩‍🍳
 </div>
 <br>
 <br>
@@ -175,7 +175,7 @@ log.error("error message") # logs an error
 ```
 
 #### log_level
-Context manager to temporarely change log level.
+Context manager to temporarily change log level.
 ```
 ```python
 from frittomisto.logging import get_logger, log_level
@@ -191,18 +191,8 @@ with log_level("DEBUG"):
 Craving more features or found a bug in our recipe? Contribute to FrittoMisto by opening an [issue](https://github.com/werew/frittomisto/issues) or submitting a [pull request](https://github.com/werew/frittomisto/pulls). 
 Your contributions make the mix even more delightful!
 
-## Roadmap
-
-Stay tuned for the delicious developments ahead, including:
-
-- Expanding the variety of utilities
-- Enhancing the overall flavor with performance improvements
-- Growing and refining our documentation
-
 ## License
 
 FrittoMisto is released under the [MIT License](https://opensource.org/licenses/MIT).
 
 ---
-
-Thank you for choosing FrittoMisto! We hope these utilities add a dash of flavor and simplicity to your Python projects. Happy coding!
