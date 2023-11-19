@@ -22,3 +22,5 @@ jobs:
       run: poetry run pytest -v
     - name: Analysing the code with pylint
       run: poetry run pylint $(git ls-files '*.py')
+    - name: Type checking with pyright
+      run: poetry run pyright $(git ls-files '*.py')
