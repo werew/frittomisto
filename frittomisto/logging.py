@@ -26,7 +26,7 @@ def get_logger(name: Optional[str] = None) -> logging.Logger:
     return logger
 
 @contextmanager
-def log_level(level: int, name: Optional[str] = None) -> Generator[None, None, None]:
+def log_level(level: int | str, name: Optional[str] = None) -> Generator[None, None, None]:
     """
     Context manager to set the log level for the given logger
     """
