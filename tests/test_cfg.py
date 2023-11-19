@@ -50,6 +50,3 @@ def test_find_cfg() -> None:
         with cd(child_dir):
             assert cfg["foo"]["bar"] == 1
             assert cfg["foo"]["baz"] == "hello"
-
-
-        
