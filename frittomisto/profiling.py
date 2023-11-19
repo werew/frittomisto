@@ -19,11 +19,11 @@ class _PP:
         self.started: Optional[float] = None
         self.max_time = 0
 
-    def start(self) -> None:
+    def start(self, allow_restart: bool = False) -> None:
         """
         Starts the perf counter
         """
-        if self.started is not None:
+        if not allow_restart and self.started is not None:
             raise RuntimeError("Already started")
         self.started = time.perf_counter()
 
@@ -53,29 +53,48 @@ class _PP:
 __pp__: Dict[str, _PP] = {}
 
 
-def pp_start(name: str):
+def pp_start(name: str, allow_restart: bool = False):
     """
-    Start a perf counter named `name`
+    Start a perf counter named `name`.
+    If allow_restart is True, the perf counter can be started multiple times,
+    in which case only the last start time is considered.
     """
     if name not in __pp__:
         __pp__[name] = _PP(name)
     # Start the perf counter as last as possible to avoid overhead
-    __pp__[name].start()
+    __pp__[name].start(allow_restart)
 
 
-def pp_stop(name: str, strict: bool = True):
+def pp_stop(name: str, allow_restop: bool = False):
     """
-    Stop a perf counter named `name`
+    Stop a perf counter named `name`.
+    If allow_restop is True, the perf counter can be stopped multiple times,
+    in which case only the first stop time is considered.
     """
     # Stop the perf counter as soon as possible to avoid overhead
     stop_time = time.perf_counter()
     if name not in __pp__:
         __pp__[name] = _PP(name)
-    if strict:
+    if not allow_restop:
         __pp__[name].stop(stop_time)
     else:
         __pp__[name].stop_if_started(stop_time)
 
+def pp_get(name: str) -> _PP:
+    """
+    Return the perf counter named `name`
+    """
+    return __pp__[name]
+
+def pp_reset(name: Optional[str] = None) -> None:
+    """
+    Reset the perf counter named `name`.
+    If `name` is None, reset all perf counters.
+    """
+    if name is None:
+        __pp__.clear()
+    else:
+        del __pp__[name]
 
 def pp_stats():
     """ 
