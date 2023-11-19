@@ -4,9 +4,9 @@ Utilities for logging
 import logging
 from typing import Optional, Generator, Union
 from contextlib import contextmanager
-from functools import cache
+from functools import lru_cache
 
-@cache # Cache the result to avoid registering the same handler multiple times
+@lru_cache(maxsize=None) # Cache the result to avoid registering the same handler multiple times
 def get_logger(name: Optional[str] = None) -> logging.Logger:
     """
     Returns a logger with the given name.
