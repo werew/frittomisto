@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "frittomisto"
-version = "0.0.a1"
+version = "0.0.a2"
 description = "A fried mix of python utilities"
 authors = ["werew"]
 readme = "README.md"
