@@ -25,9 +25,8 @@ class FrittoMistoCfg:
         self._config: Optional[Dict[str, Any]] = None
         self._config_names: List[str] = ["frittomisto.toml"]
         self._config_file: Optional[str] = None
-        self._should_monitor: bool = False
 
-    def set_config_file(self, config_file: str) -> None:
+    def set_config_file(self, config_file: str | None) -> None:
         """
         Set the config file to use
         """
@@ -52,12 +51,6 @@ class FrittoMistoCfg:
         The default is ['frittomisto.toml']
         """
         return self._config_names
-
-    def set_should_monitor(self, should_monitor: bool) -> None:
-        """
-        Set whether the config file should be monitored for changes
-        """
-        self._should_monitor = should_monitor
 
     def reload(self) -> None:
         """
@@ -84,10 +77,6 @@ class FrittoMistoCfg:
         # Find the config file if it hasn't been found yet
         if self._config_file is None:
             self._config_file = self._find_config()
-
-        # Reload the config if it should be monitored
-        if self._should_monitor:
-            raise NotImplementedError("Monitoring config file for changes is not yet implemented")
 
         if self._config is None:
             self._config = self._reload_config()
