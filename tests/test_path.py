@@ -2,6 +2,7 @@
 Test path utilities
 """
 from pathlib import Path
+from typing import Optional
 import pytest
 from frittomisto.path import cd, sanitize_path
 
@@ -50,7 +51,7 @@ PATH_TESTS = [
 ]
 
 @pytest.mark.parametrize("path,allowed_dir,expected", PATH_TESTS)
-def test_sanitize_path(path: str, allowed_dir: str, expected: str | None) -> None:
+def test_sanitize_path(path: str, allowed_dir: str, expected: Optional[str]) -> None:
     """
     Test sanitize_path
     """

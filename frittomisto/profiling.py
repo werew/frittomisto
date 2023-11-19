@@ -110,7 +110,7 @@ def pp_stats():
             return string[: max_length - 3] + "..."
         return string
 
-    def _print_row(row: Union[List[str], List[str | int | float]], column_widths: List[int]):
+    def _print_row(row: Union[List[str], List[Union[str, int, float]]], column_widths: List[int]):
         """
         Print a row of the table
         """
@@ -119,7 +119,7 @@ def pp_stats():
 
     # Determine the maximum width of each column
     headers: List[str] = ["PID", "Name", "tot_time", "rounds", "avg_time", "max_time"]
-    rows: List[List[str | int | float]] = [
+    rows: List[List[Union[str, int, float]]] = [
         [os.getpid(), pp.name, pp.tot_time, pp.rounds, pp.tot_time / pp.rounds, pp.max_time]
         for pp in sorted(__pp__.values(), key=lambda pp: pp.tot_time, reverse=True)
     ]

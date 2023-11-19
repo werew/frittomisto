@@ -26,7 +26,7 @@ class FrittoMistoCfg:
         self._config_names: List[str] = ["frittomisto.toml"]
         self._config_file: Optional[str] = None
 
-    def set_config_file(self, config_file: str | None) -> None:
+    def set_config_file(self, config_file: Optional[str]) -> None:
         """
         Set the config file to use
         """
