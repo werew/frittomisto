@@ -185,6 +185,19 @@ with log_level("DEBUG"):
   log.debug("debug message") # the debug message will be shown
 ```
 
+### URL module
+
+Utilities to work with URLs
+
+#### extract_urls
+Scan text for urls.
+
+```python
+from frittomisto.url import extract_urls
+text = "My URL is http://example.com"
+urls = extract_urls(text)
+print(urls[0]) # http://example.com
+```
 
 ## 👨‍🍳 Contributing
 
