@@ -8,9 +8,8 @@ from typing import Dict, get_args, get_origin, Union, Any, get_type_hints
 try:
     from typing import Self
 except ImportError:
-    # Pre Python 3.11 compatibility
-    from typing import TypeVar
-    Self = TypeVar("Self", bound="JSONSerializable")
+    # Python 3.7 compatibility
+    from typing import Generic as Self
 
 
 @dataclass
@@ -34,14 +33,14 @@ class JSONSerializable:
             elif isinstance(v, dict):
                 ret[k] = {
                     kk: vv.to_dict() if isinstance(vv, JSONSerializable) else vv
-                    for kk, vv in v.items() # type: ignore
+                    for kk, vv in v.items()  # type: ignore
                 }
             else:
                 ret[k] = v
         return ret
 
     @classmethod
-    def from_dict(cls, d: Dict[str, Any]) -> Self: # type: ignore
+    def from_dict(cls, d: Dict[str, Any]) -> Self:
         """
         Create an object from a dictionary.
         """
@@ -104,8 +103,8 @@ class JSONSerializable:
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, s: str) -> Self: # type: ignore
+    def from_json(cls, s: str) -> Self:
         """
         Create an object from a JSON string.
         """
-        return cls.from_dict(json.loads(s)) # type: ignore
+        return cls.from_dict(json.loads(s))
