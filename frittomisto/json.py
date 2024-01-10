@@ -6,11 +6,11 @@ from dataclasses import dataclass
 from typing import Dict, get_args, get_origin, Union, Any, get_type_hints
 
 try:
-    from typing import Self # type: ignore
+    from typing import Self
 except ImportError:
     # Pre Python 3.11 compatibility
-    from typing import TypeAlias
-    Self : TypeAlias
+    from typing import TypeVar
+    Self = TypeVar("Self", bound="JSONSerializable")
 
 
 @dataclass
@@ -41,7 +41,7 @@ class JSONSerializable:
         return ret
 
     @classmethod
-    def from_dict(cls, d: Dict[str, Any]) -> Self:
+    def from_dict(cls, d: Dict[str, Any]) -> Self: # type: ignore
         """
         Create an object from a dictionary.
         """
@@ -104,8 +104,8 @@ class JSONSerializable:
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, s: str) -> Self:
+    def from_json(cls, s: str) -> Self: # type: ignore
         """
         Create an object from a JSON string.
         """
-        return cls.from_dict(json.loads(s))
+        return cls.from_dict(json.loads(s)) # type: ignore
