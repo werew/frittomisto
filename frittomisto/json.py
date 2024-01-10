@@ -3,7 +3,14 @@ Utilities for working with JSON
 """
 import json
 from dataclasses import dataclass
-from typing import Dict, get_args, get_origin, Union, Any, Self, get_type_hints
+from typing import Dict, get_args, get_origin, Union, Any, get_type_hints
+
+try:
+    from typing import Self # type: ignore
+except ImportError:
+    # Pre Python 3.11 compatibility
+    from typing import TypeAlias
+    Self : TypeAlias
 
 
 @dataclass
